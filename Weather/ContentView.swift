@@ -4,23 +4,11 @@ struct ContentView: View {
   var body: some View {
     
     ZStack {
-      LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
-        .ignoresSafeArea(.all)
+      BackgroundView(topColor: .blue, bottomColor: Color("lightBlue"))
       
       VStack {
-        Text("Cupertino CA")
-          .font(.system(size: 36, weight: .medium, design: .default))
-          .foregroundColor(.white)
-        Image(systemName: "cloud.sun.fill")
-          .renderingMode(.original)
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 180, height: 180)
-        Text("32°")
-          .font(.system(size: 70, weight: .medium))
-          .foregroundColor(.white)
-        
-          .padding(.bottom, 80)
+        CityTextView(cityName: "Cupertino, CA")
+        MainWeatherStatusView(imageName: "cloud.rain.fill", temperature: 26)
   
         HStack(spacing: 20){
           weatherDayView(dayOfWeek: "Mon", imageName: "cloud.rain.fill", temperature: 22)
@@ -30,6 +18,10 @@ struct ContentView: View {
           weatherDayView(dayOfWeek: "Tue", imageName: "sun.max.fill", temperature: 26)
          
         }
+        Spacer()
+        
+        WeatherButton(title: "Change day time")
+        
         Spacer()
       }
     }
@@ -67,4 +59,58 @@ struct weatherDayView: View {
       
     }
   }
+}
+
+struct BackgroundView: View {
+  var topColor: Color
+  var bottomColor: Color
+  
+  var body: some View {
+    LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    .ignoresSafeArea(.all)
+  }
+}
+
+struct CityTextView: View {
+  
+  var cityName: String
+  
+  var body: some View {
+    Text(cityName)
+      .font(.system(size: 36, weight: .medium, design: .default))
+      .foregroundColor(.white)
+  }
+}
+
+struct MainWeatherStatusView: View {
+  
+  var imageName: String
+  var temperature: Int
+  
+  var body: some View {
+    Image(systemName: imageName)
+      .renderingMode(.original)
+      .resizable()
+      .aspectRatio(contentMode: .fit)
+      .frame(width: 180, height: 180)
+    Text("\(temperature)°")
+      .font(.system(size: 70, weight: .medium))
+      .foregroundColor(.white)
+    
+      .padding(.bottom, 80)
+  }
+}
+
+struct WeatherButton: View {
+  
+  var title: String
+  
+  var body: some View {
+      Text(title)
+        .frame(width: 280, height: 50)
+        .background(Color.white)
+        .foregroundColor(.blue)
+        .font(.system(size: 20,weight: .bold, design: .default))
+        .cornerRadius(10)
+    }
 }
