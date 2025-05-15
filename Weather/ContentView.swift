@@ -21,41 +21,8 @@ struct ContentView: View {
           .foregroundColor(.white)
           
         HStack {
-          VStack {
-            
-            Text("Mon")
-              .font(.system(size: 20, weight: .medium, design: .default))
-              .foregroundColor(.white)
-            
-            Image(systemName: "cloud.rain.fill")
-              .renderingMode(.original)
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 30, height: 30, alignment: .center)
-            
-            Text("22°")
-              .font(.system(size: 25, weight: .medium, design: .default))
-              .foregroundColor(.white)
-            
-          }
-          VStack {
-            
-            Text("Mon")
-              .font(.system(size: 20, weight: .medium, design: .default))
-              .foregroundColor(.white)
-            
-            Image(systemName: "cloud.rain.fill")
-              .renderingMode(.original)
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 30, height: 30, alignment: .center)
-            
-            Text("22°")
-              .font(.system(size: 25, weight: .medium, design: .default))
-              .foregroundColor(.white)
-            
-          }
-
+          dayView()
+          dayView()
         }
         Spacer()
       }
@@ -67,4 +34,26 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+struct dayView: View {
+  var body: some View {
+    VStack {
+      
+      Text("Mon")
+        .font(.system(size: 20, weight: .medium, design: .default))
+        .foregroundColor(.white)
+      
+      Image(systemName: "cloud.rain.fill")
+        .renderingMode(.original)
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: 30, height: 30, alignment: .center)
+      
+      Text("22°")
+        .font(.system(size: 25, weight: .medium, design: .default))
+        .foregroundColor(.white)
+      
+    }
+  }
 }
